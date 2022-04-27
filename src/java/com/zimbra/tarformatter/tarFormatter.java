@@ -22,7 +22,7 @@ import com.zimbra.zcsprov.ZMSoapSession;
 import com.zimbra.zcsprov.ZCSACProvision;
 import com.zimbra.auth.AuthTokens;
 import com.zimbra.common.ZCSProvParams;
-import org.apache.log4j.PropertyConfigurator;
+import org.apache.logging.log4j.core.config.Configurator;
 
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -451,7 +451,7 @@ public class tarFormatter implements EventNotifier
         p.put("log4j.appender.A1", "org.apache.log4j.ConsoleAppender");
         p.put("log4j.appender.A1.layout", "org.apache.log4j.PatternLayout");
         p.put("log4j.appender.A1.layout.ConversionPattern", "[%t] [%x] %p: %m%n");
-        PropertyConfigurator.configure(p);
+        Configurator.initialize(null, p);
 
     }
     public boolean Init(String[] args)
