@@ -46,7 +46,8 @@
     <pathelement location="../ZimbraCommon/jars/commons-httpclient-3.1.jar"/>
     <pathelement location="../ZimbraCommon/jars/commons-logging.jar"/>
     <pathelement location="../ZimbraCommon/jars/saaj.jar"/>
-    <pathelement location="../ZimbraCommon/jars/log4j-1.2.16.jar"/>
+    <pathelement location="../ZimbraCommon/jars/log4j-core-2.17.1.jar"/>
+    <pathelement location="../ZimbraCommon/jars/log4j-api-2.17.1.jar"/>
   </path>
 
   <!-- Modules -->
