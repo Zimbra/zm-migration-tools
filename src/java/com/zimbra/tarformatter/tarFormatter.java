@@ -22,8 +22,13 @@ import com.zimbra.zcsprov.ZMSoapSession;
 import com.zimbra.zcsprov.ZCSACProvision;
 import com.zimbra.auth.AuthTokens;
 import com.zimbra.common.ZCSProvParams;
-import org.apache.log4j.PropertyConfigurator;
-
+import org.apache.logging.log4j.core.appender.ConsoleAppender;
+import org.apache.logging.log4j.core.config.Configurator;
+import org.apache.logging.log4j.core.config.builder.api.AppenderComponentBuilder;
+import org.apache.logging.log4j.core.config.builder.api.ConfigurationBuilder;
+import org.apache.logging.log4j.core.config.builder.api.ConfigurationBuilderFactory;
+import org.apache.logging.log4j.core.config.builder.api.LayoutComponentBuilder;
+import org.apache.logging.log4j.core.config.builder.impl.BuiltConfiguration;
 import java.util.Properties;
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -427,6 +432,13 @@ public class tarFormatter implements EventNotifier
     private static final String tarMigVersion="1.4";
     private static final String ztozconfigFile="zmztozmig.conf";
     private static final String ztoz_default_configpath="/opt/zimbra/conf/";
+    private static final String LOG_CONFIG_NAME = "RollingBuilder";
+    private static final String DEFAULT_APPENDER_NAME = "Stdout";
+    private static final String DEFAULT_APPENDER_TYPE = "CONSOLE";
+    private static final String DEFAULT_APPENDER_TARGET = "target";
+    private static final String LAYOUT_TYPE = "PatternLayout";
+    private static final String LAYOUT_PATTERN_VALUE = "[%t] [%x] %p: %m%n";
+    private static final String LAYOUT_PATTERN = "pattern";
     private String configFile="";
     private ZCSPLogger tarformatter_Logger;
     private Logger tarfmt_log;
@@ -441,17 +453,16 @@ public class tarFormatter implements EventNotifier
 
     private void SetdefaultLog4JAppender()
     {
-        String level = System.getProperty("zimbra.log4j.level");
-        if (level == null)
-        {
-            level = "INFO";
-        }
-        Properties p = new Properties();
-        p.put("log4j.rootLogger", level + ",A1");
-        p.put("log4j.appender.A1", "org.apache.log4j.ConsoleAppender");
-        p.put("log4j.appender.A1.layout", "org.apache.log4j.PatternLayout");
-        p.put("log4j.appender.A1.layout.ConversionPattern", "[%t] [%x] %p: %m%n");
-        PropertyConfigurator.configure(p);
+        ConfigurationBuilder< BuiltConfiguration > builder = ConfigurationBuilderFactory.newConfigurationBuilder();
+        builder.setStatusLevel(org.apache.logging.log4j.Level.INFO);
+        builder.setConfigurationName(LOG_CONFIG_NAME);
+        AppenderComponentBuilder appenderBuilder = builder.newAppender(DEFAULT_APPENDER_NAME, DEFAULT_APPENDER_TYPE)
+                .addAttribute(DEFAULT_APPENDER_TARGET, ConsoleAppender.Target.SYSTEM_OUT);
+        LayoutComponentBuilder layoutBuilder = builder.newLayout(LAYOUT_TYPE);
+        layoutBuilder.addAttribute(LAYOUT_PATTERN, LAYOUT_PATTERN_VALUE);
+        builder.add(builder.newRootLogger(org.apache.logging.log4j.Level.INFO)
+                .add(builder.newAppenderRef(DEFAULT_APPENDER_NAME)));
+        Configurator.initialize(builder.build());
 
     }
     public boolean Init(String[] args)
