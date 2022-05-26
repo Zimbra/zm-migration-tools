@@ -53,6 +53,7 @@
 	<!-- Module ztozprov -->
 
 	<dirname property="module.ztozprov.basedir" file="${ant.file}"/>
+       <property name="zm-migration-tools-version" value="8.8"/>
 	<property name="ivy.jar.dir" location="${user.home}/.ant/lib"/>
 	<property name="ivy.install.version" value="2.3.0"/>
 	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy-${ivy.install.version}.jar"/>
@@ -171,6 +172,6 @@
 
 	<target name="zmzimbratozimbramig" depends="all">
 		<mkdir dir="${basedir}/build"/>
-		<jar manifest="${basedir}/MANIFEST.MF" destfile="${basedir}/build/jars/zmzimbratozimbramig.jar" basedir="${basedir}/out/production/ztozprov"/>
+		<jar manifest="${basedir}/MANIFEST.MF" destfile="${basedir}/build/jars/zmzimbratozimbramig-${zm-migration-tools-version}.jar" basedir="${basedir}/out/production/ztozprov"/>
 	</target>
 </project>
