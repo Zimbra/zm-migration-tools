@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+	<info organisation="zimbra" module="zm-migration-tools" status="integration"> </info>
+	<dependencies>
+    <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+        <dependency org="commons-codec" name="commons-codec" rev="1.7"/>
+    <!-- https://mvnrepository.com/artifact/commons-httpclient/commons-httpclient -->
+        <dependency org="commons-httpclient" name="commons-httpclient" rev="3.1"/>  
+    <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+        <dependency org="commons-logging" name="commons-logging" rev="1.2"/>
+    <!-- https://mvnrepository.com/artifact/javax.activation/activation -->
+        <dependency org="javax.activation" name="activation" rev="1.1"/>
+    <!-- https://mvnrepository.com/artifact/org.jvnet/mimepull -->
+        <dependency org="org.jvnet" name="mimepull" rev="1.4"/>
+    <!-- https://mvnrepository.com/artifact/javax.xml.soap/saaj-api -->
+        <dependency org="javax.xml.soap" name="saaj-api" rev="1.3.3"/>
+    <!-- https://mvnrepository.com/artifact/com.sun.xml.messaging.saaj/saaj-impl -->
+        <dependency org="com.sun.xml.messaging.saaj" name="saaj-impl" rev="1.3.10"/>
+    <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+        <dependency org="org.apache.logging.log4j" name="log4j-core" rev="2.17.1"/>
+    <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+        <dependency org="org.apache.logging.log4j" name="log4j-api" rev="2.17.1"/>
+	</dependencies>
+</ivy-module>
